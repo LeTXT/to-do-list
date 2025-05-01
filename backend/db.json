@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "title": "javaScript",
+      "description": "ECMAScript",
+      "category": "Estudo",
+      "check": false
+    },
+    {
+      "id": "2",
+      "title": "C++",
+      "description": "",
+      "category": "Trabalho",
+      "check": true
+    }
+  ]
+}
