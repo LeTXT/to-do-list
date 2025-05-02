@@ -22,7 +22,7 @@ Aplicação web de lista de tarefas feita em React, com backend em json-server, 
 ### 1. Clone o repositório
 ```
 git clone https://github.com/LeTXT/to-do-list.git
-cd to-do-list
+cd '.\to-do-list\'
 ```
 
 ### 2. Instale as dependências do front-end
