@@ -50,4 +50,4 @@ npm install
 npm start
 ```
 ## Autor
-** Desenvolvido por Leandro **
+**Desenvolvido por Leandro**
