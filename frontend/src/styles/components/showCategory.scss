@@ -1,0 +1,10 @@
+@use '../../abstracts/index' as *;
+
+.showCategory {
+    button {
+        border: solid 1px black;
+        border-radius: 30px;
+
+        padding: 5px;
+    }
+}

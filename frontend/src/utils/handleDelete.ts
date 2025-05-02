@@ -1,6 +1,9 @@
 import { TaskType } from "../assets/type"
 
-export const handleDelete = async (item: TaskType, setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>) => {
+export const handleDelete = async (
+    item: TaskType, 
+    setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
+) => {
 
     try {
         const response = await fetch('http://localhost:3000/list/' + item.id, {

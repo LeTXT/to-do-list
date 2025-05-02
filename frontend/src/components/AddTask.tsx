@@ -10,15 +10,18 @@ interface addTaskProps {
     setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
     showAddTask: boolean
     setShowAddTask: React.Dispatch<React.SetStateAction<boolean>>
+    category: []
 }
 
-function AddTask({ setTasks, showAddTask, setShowAddTask }: addTaskProps) {
+function AddTask({ setTasks, showAddTask, setShowAddTask, category }: addTaskProps) {
     const [title, setTitle] = useState<string>('')
     const [description, setDescription] = useState<string>('')
+    const [selectedCategory, setSelectedCategory] = useState('');
 
      const paramsAgroup = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
             setTimeout(() => {
-                throwTask(e, title, description, setTasks, setTitle, setDescription)
+                throwTask(title, description, selectedCategory, setTasks, setTitle, setDescription, setSelectedCategory)
                 setShowAddTask(false)
             }, 100)
         }
@@ -38,7 +41,7 @@ function AddTask({ setTasks, showAddTask, setShowAddTask }: addTaskProps) {
     return (
         <div className={`addTask ${showAddTask ? 'show' : '' }`}>
             
-            <form onSubmit={paramsAgroup}>
+            <form onSubmit={ e => paramsAgroup(e)}>
             <div className="actionsBtn">
                 <button 
                     onClick={handleCancel} 
@@ -55,6 +58,7 @@ function AddTask({ setTasks, showAddTask, setShowAddTask }: addTaskProps) {
                     Adicionar
                 </button>
             </div>
+            <div className="titleLocal">
                 <input 
                     type="text"
                     value={title}
@@ -64,6 +68,7 @@ function AddTask({ setTasks, showAddTask, setShowAddTask }: addTaskProps) {
 
                     spellCheck
                 />
+            </div>
                 <textarea 
                     value={description}
                     onChange={e => setDescription(e.target.value)}
@@ -73,6 +78,18 @@ function AddTask({ setTasks, showAddTask, setShowAddTask }: addTaskProps) {
                     spellCheck
                     rows={10}
                 />
+
+                <select 
+                    name="select"
+                    value={selectedCategory} 
+                    onChange={e => setSelectedCategory(e.target.value)}
+                >
+                    {category.map(item => {
+                        return (
+                            <option value={item} key={item}>{item}</option>
+                        )
+                    })}
+                </select>
                 
             </form>
         </div>

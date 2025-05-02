@@ -1,9 +1,14 @@
 import { TaskType } from "../assets/type"
 
-export const handleCheck = async (item: TaskType, setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>) => {
+export const handleCheck = async (
+    item: TaskType, 
+    setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
+) => {
+    
     const updateCheckStatus = !item.check
     const updateItem = { ...item, check: updateCheckStatus }
-
+    
+    console.log(item.check);
     try {
         const response = await fetch('http://localhost:3000/list/' + item.id, {
             method: "PATCH",

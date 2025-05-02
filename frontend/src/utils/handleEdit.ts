@@ -5,6 +5,7 @@ export const handleEdit = async (
     editedTitle: string,
     editedDescription: string,
     setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>,
+    category: string
 ) => {
 
     const title = editedTitle.trim().length > 0 ? editedTitle : item.title
@@ -13,7 +14,8 @@ export const handleEdit = async (
     const updateItem = {
         ...item,
         title,
-        description
+        description,
+        category
     }
 
     try {

@@ -2,16 +2,28 @@
   "list": [
     {
       "id": "1",
-      "title": "javaScript",
-      "description": "ECMAScript",
+      "title": "ECMAScript",
+      "description": "POO",
       "category": "Estudo",
-      "check": false
+      "check": true
     },
     {
       "id": "2",
       "title": "C++",
       "description": "",
       "category": "Trabalho",
+      "check": true
+    },
+    {
+      "id": "df5a",
+      "title": "Python",
+      "description": "Linguagem",
+      "check": true
+    },
+    {
+      "id": "f4b1",
+      "title": "Java",
+      "description": "POO\nClasse",
       "check": true
     }
   ]

@@ -1,5 +1,11 @@
+@use '../../abstracts/index' as *;
+
 .tasks {
-    padding: 16px;
+    width: 100%;
+    max-width: 600px;
+
+    margin-top: 30px;
+    overflow: hidden;
 
     ul {
         margin: 0;
@@ -9,7 +15,8 @@
         }
     }
 
-    .showAddTask {
+    .bottomBtn {
+        @include flex(row, center, end);
         position: absolute;
 
         right: 30px;
@@ -17,18 +24,106 @@
 
         z-index: 2;
 
-        width: 45px;
-        height: 45px;
+        gap: 10px;
 
-        background-color: black;
+        .showAddTask {
+            @include flex();
 
-        border: none;
-        border-radius: 5px;
+            position: relative;
+    
+            width: 45px;
+            height: 45px;
+    
+            background-color: black;
+    
+            border: none;
+            border-radius: 5px;
+    
+            transition: transform 0.2s ease-in-out;
 
-        transition: transform 0.2s ease-in-out;
+            right: -25px;
+            opacity: 0;
+
+            animation: showBtnTask .5s ease-in-out forwards;
+
+            z-index: 2;
+        }
+
+        @keyframes showBtnTask {
+            to {
+                right: 0;
+                opacity: 1;
+            }
+        }
+
+        .showFilter {
+            @include flex();
+
+            position: relative;
+
+            width: 30px;
+            height: 30px;
+
+            border: 1px solid black;
+            border-radius: 3px;
+
+            right: -65px;
+            opacity: 0;
+
+            animation: showBtnFilter .5s ease-in-out .3s forwards;
+
+            z-index: 1;
+        }
+
+        @keyframes showBtnFilter {
+            to {
+               right: 0;
+               opacity: 1;
+           }
+       }
+
     }
 
-    .showAddTask:active {
-        transform: scale(0.9);
+    .categoryPanel {
+        @include flex();
+        position: absolute;
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+
+        bottom: -150px;
+        right: 0;
+    
+        background-color: $light;
+    
+        z-index: 3;
+
+        padding: 16px;
+    
+        // height: 200px;
+        width: 100%;
+    
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+
+        transition: bottom 0.3s ease-in-out;
+
+        .actionBtn {
+            width: 100%;
+        }
+
+        .list {
+            @include flex();
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            width: 100%;
+        }
+
+        &.show {
+            bottom: 0;
+        }
     }
+
 }

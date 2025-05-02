@@ -1,0 +1,12 @@
+@use '../../abstracts/index' as *;
+
+.home {
+    @include flex(column, start);
+
+    width: 100%;
+    height: 100%;
+
+    padding: 16px;
+
+    overflow: hidden;
+}
