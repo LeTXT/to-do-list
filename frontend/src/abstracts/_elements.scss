@@ -1,0 +1,71 @@
+@use './mixins' as *;
+
+input, textarea {
+    outline: none;
+
+    resize: none;
+
+    border: none;
+
+    width: 100%;
+
+    font-weight: 300;
+
+    color: black;
+
+    background-color: transparent;
+
+}
+
+input {
+    padding: 0;
+}
+
+.title {
+    font-size: 24px;
+
+    margin-top: 70px;
+    margin-bottom: 45px;
+
+}
+
+.description {
+
+    font-size: 16px;
+}
+
+.actionsBtn {
+    @include flex(row, space-between);
+
+    button {
+        border: none;
+        background-color: transparent;
+
+        transition: transform 0.1s ease-in-out;
+    }
+
+    button:active {
+        transform: scale(0.9);
+    }
+
+    .cancel {
+        opacity: 0.5;
+    }
+    .submit:disabled {
+        opacity: 0.8;
+        color: black;
+    }
+}
+
+button {
+    font-size: 16px;
+
+    border: none;
+    background-color: transparent;
+
+    transition: transform 0.1s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.9);
+}

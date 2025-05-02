@@ -1,0 +1,138 @@
+@use '../../abstracts/index' as *;
+
+.taskItem {
+    margin-bottom: 15px;
+
+    overflow: none;
+
+    width: 100%;
+
+    .checkInput {
+        @include flex();
+
+        .checkBtn {
+            @include flex();
+
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 2px;
+
+            padding: 0;
+            margin: 0;
+
+            width: 20px;
+            height: 20px;
+
+            transition: background-color 0.3s ease-in-out;
+
+            margin-right: 7px;
+        }
+
+        input {
+            cursor: pointer;
+        }
+
+        &.checked {
+
+            .checkBtn {
+                background-color: $green;
+
+                border: none;
+            }
+
+            input {
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+            .title {
+                color: black;
+            }
+        }
+    }
+
+    .taskDescription {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+        pointer-events: none; 
+      
+        textarea {
+          font-size: 12px;
+          
+        }
+
+        .checked {
+            color: rgba(0, 0, 0, 0.5);
+        }
+      
+        &.show {
+          max-height: 200px; 
+          opacity: 1;
+          pointer-events: auto;
+          margin-top: 7px;
+        }
+    }
+
+    .task {
+        @include flex(row, space-between);
+
+        width: 100%;
+
+        .showEdit {
+
+            font-size: 12px;
+
+            transition: transform 0.1s ease-in-out;
+        }
+    }
+
+
+    .editPanel {
+        position: absolute;
+
+        width: 400px;
+        max-width: 100%;
+
+        height: 100%;
+
+        padding: 19px 16px;
+
+        box-sizing: border-box;
+
+        top: 0;
+        right: -400px;
+
+        background-color: $light;
+
+        z-index: 3;
+
+        transition: right 0.3s ease-in-out;
+
+
+        .checkBtn {
+            margin-top: 70px;
+            margin-bottom: 45px;
+        }
+        
+
+        .delete {
+            position: absolute;
+
+            bottom: 46px;
+            right: 30px;
+
+            font-weight: 600;
+        }
+
+        &.show {
+            right: 0;
+        }
+
+        &.hidden {
+            display: none;
+        }
+
+    }
+
+
+}

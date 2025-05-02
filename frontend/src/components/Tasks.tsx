@@ -5,8 +5,13 @@ import { TaskType } from "../assets/type"
 import TaskItem from "./TaskItem"
 import AddTask from "./AddTask"
 
+import { FiPlus } from "react-icons/fi";
+
+import '../styles/components/tasks.scss'
+
 function Tasks() {
     const [tasks, setTasks] = useState<TaskType[]>([])
+    const [showAddTask, setShowAddTask] = useState<boolean>(false)
 
     useEffect(() => {
         fetch('http://localhost:3000/list')
@@ -15,18 +20,21 @@ function Tasks() {
     }, [])
 
     return (
-        <div>
-            <AddTask setTasks={setTasks}/>
+        <div className="tasks">
+            <AddTask setTasks={setTasks} showAddTask={showAddTask} setShowAddTask={setShowAddTask}/>
             <ul>
-                {tasks.map(item => {
+                {tasks.length > 0 ? tasks.map(item => {
                     return (
                         <li key={item.id}>
                             <TaskItem item={item} setTasks={setTasks} />
                         </li>
                     )
-                })}
+                }) : <li>Sem tarefas no momento</li>}
             </ul>
 
+            <button onClick={() => setShowAddTask(true)} className="showAddTask">
+                <FiPlus size={24} color="white"/>
+            </button>
         </div>
     )
 }

@@ -2,54 +2,78 @@ import { useState } from "react"
 
 import { TaskType } from "../assets/type"
 
+import { throwTask } from "../utils/throwTask"
+
+import '../styles/components/addTask.scss'
+
 interface addTaskProps {
     setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
+    showAddTask: boolean
+    setShowAddTask: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function AddTask({ setTasks }: addTaskProps) {
+function AddTask({ setTasks, showAddTask, setShowAddTask }: addTaskProps) {
     const [title, setTitle] = useState<string>('')
     const [description, setDescription] = useState<string>('')
 
-    const throwTask = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        try {
-            const response = await fetch('http://localhost:3000/list', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({title, description, check: false})
-            })
-
-            if(!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`)
-            }
-
-            const newTask: TaskType = await response.json()
-            
-            setTasks(prev => [...prev, newTask])
-            setTitle('')
-            setDescription('')
-        } catch (err) {
-            console.error('Task não lançada', err);
-            
+     const paramsAgroup = (e: React.FormEvent<HTMLFormElement>) => {
+            setTimeout(() => {
+                throwTask(e, title, description, setTasks, setTitle, setDescription)
+                setShowAddTask(false)
+            }, 100)
         }
-    }
+
+        const handleCancel = () => {
+            setTimeout(() => {
+                setShowAddTask(false)
+                
+            }, 100);
+            setTimeout(() => {
+                setTitle('')
+                setDescription('')
+
+            }, 300)
+        }
+
     return (
-        <div>
-            <form onSubmit={throwTask}>
+        <div className={`addTask ${showAddTask ? 'show' : '' }`}>
+            
+            <form onSubmit={paramsAgroup}>
+            <div className="actionsBtn">
+                <button 
+                    onClick={handleCancel} 
+                    className="cancel" 
+                    type="reset"
+                >
+                    Cancelar
+                </button>
+                <button 
+                    type="submit" 
+                    disabled={title.trim().length === 0}
+                    className="submit"
+                >
+                    Adicionar
+                </button>
+            </div>
                 <input 
                     type="text"
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                     placeholder="Título da tarefa"
+                    className="title"
+
+                    spellCheck
                 />
-                <input 
-                    type="text"
+                <textarea 
                     value={description}
                     onChange={e => setDescription(e.target.value)}
-                    placeholder="Descrição da tarefa"
+                    placeholder="Descrição"
+                    className="description"
+
+                    spellCheck
+                    rows={10}
                 />
-                <button type="submit">Adicionar</button>
+                
             </form>
         </div>
     )
